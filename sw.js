@@ -1,5 +1,5 @@
-// KinéTests — service worker : fonctionnement hors ligne. Version du contenu : c112fdde57c6
-const CACHE='kinetests-c112fdde57c6';
+// KinéTests — service worker : fonctionnement hors ligne. Version du contenu : 9d03d8bb1128
+const CACHE='kinetests-9d03d8bb1128';
 const FILES=['./','./index.html','./manifest.webmanifest','./icons/icon-180.png','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-512-maskable.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(u=>new Request(u,{cache:'reload'})))))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('kinetests-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
