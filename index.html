@@ -554,6 +554,15 @@ footer.site .foot410{display:grid;grid-template-columns:repeat(auto-fit,minmax(1
 .ct-urg{margin:0 0 8px;padding:8px 10px;border-radius:10px;background:#fee2e2;color:#7f1d1d;border:1px solid #fca5a5}.ct-urg.ct-avis{background:#fff7ed;color:#7c2d12;border-color:#fdba74}
 .rv-lang{display:inline-flex;gap:6px;margin-top:12px;background:rgba(255,255,255,.7);border:1px solid #d7e6e8;border-radius:999px;padding:4px}.rv-flag{font:inherit;font-size:14px;font-weight:600;border:0;background:none;border-radius:999px;padding:6px 14px;cursor:pointer;color:#334155;display:inline-flex;align-items:center;gap:6px;min-height:36px}.rv-flag span{font-size:18px;line-height:1}.rv-flag.on{background:#0f766e;color:#fff}
 @media (pointer:coarse){.rv-flag{min-height:44px;padding:8px 16px}}
+.rv-q4name{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;padding:12px 14px;border-radius:12px;background:#e6f4f2;margin-bottom:12px}.rv-q4name b{font-size:21px}.rv-q4name i{color:#475569}.rv-q4name .fn-small{width:100%}
+.rv-q4form{display:grid;gap:10px}.rv-q4in{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:start}.rv-q4in textarea{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #9fb8bd;border-radius:10px;resize:vertical;width:100%}
+@media (max-width:600px){.rv-q4in{grid-template-columns:1fr;gap:4px}}
+.rv-q4row{border:1px solid #d7e6e8;border-radius:12px;padding:8px 10px;margin:0 0 10px}.rv-q4row legend{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0f766e;padding:0 4px}.rv-opts4.q4{margin-top:4px}.rv-opt.sel{border-color:#0f766e;background:#e6f4f2;box-shadow:0 0 0 2px rgba(15,118,110,.18)}
+.rv-q4rev{border:1px solid #d7e6e8;border-radius:12px;padding:10px 12px;margin:0 0 10px}.rv-q4rev.r-ok{border-color:#86efac;background:#f0fdf4}.rv-q4rev.r-mid{border-color:#fde68a;background:#fffbeb}.rv-q4rev.r-ko{border-color:#fca5a5;background:#fef2f2}
+.rv-q4cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0}.rv-q4cols small{font-size:12px;color:#55657a;font-weight:600}.rv-q4cols p{margin:2px 0;line-height:1.45}.rv-q4cols mark{background:#bbf7d0;color:inherit;border-radius:3px;padding:0 1px}
+@media (max-width:600px){.rv-q4cols{grid-template-columns:1fr}}
+.rv-q4rate{display:flex;gap:8px;flex-wrap:wrap}.rv-rate{font:inherit;font-size:14px;border:1px solid #cfdfe2;background:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}.rv-rate.on.ok{background:#dcfce7;border-color:#16a34a}.rv-rate.on.mid{background:#fef3c7;border-color:#d97706}.rv-rate.on.ko{background:#fee2e2;border-color:#dc2626}.rv-q4res{font-size:14px}
+@media (pointer:coarse){.rv-rate{min-height:46px;padding:10px 16px}}
 </style>
 <style id="kt42-ipad">/* ── KinéTests 4.2 · iPad et écrans tactiles ── */
 .ip-sheet{position:fixed;inset:0;z-index:1100;background:rgba(15,23,42,.38);display:flex;align-items:flex-end;justify-content:center;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
@@ -5827,7 +5836,8 @@ const Revision410=(()=>{
  const KEY='kt-revision-muscles-v1';
  const TX={
   fr:{F:{o:'Origine',t:'Terminaison',i:'Innervation',f:'Action'},G:{sup:'Membre supérieur',tronc:'Tête, cou et tronc',inf:'Membre inférieur'},
-   modes:{devine:['Devine le muscle','Les indices arrivent un par un : origine, terminaison, innervation, action. Moins d’indices = plus de points.'],fiche:['Fiche à compléter','Un muscle est donné : retrouver son origine, sa terminaison, son innervation ou son action parmi 4 propositions.'],inverse:['Qui fait ça ?','Une origine, une terminaison, une innervation ou une action est donnée : quel muscle correspond ?'],sprint:['Sprint 90 secondes','Fiche complète affichée, 4 propositions : un maximum de bonnes réponses en 90 secondes.']},
+   modes:{devine:['Devine le muscle','Les indices arrivent un par un : origine, terminaison, innervation, action. Moins d’indices = plus de points.'],fiche:['Fiche à compléter','Un muscle est donné : retrouver son origine, sa terminaison, son innervation ou son action parmi 4 propositions.'],inverse:['Qui fait ça ?','Une origine, une terminaison, une innervation ou une action est donnée : quel muscle correspond ?'],sprint:['Sprint 90 secondes','Fiche complète affichée, 4 propositions : un maximum de bonnes réponses en 90 secondes.'],quatre:['Muscle → 4 définitions','Un muscle est donné : restituer son origine, sa terminaison, son innervation et son action. Saisie libre corrigée par soi-même, ou réponses à choix.']},
+   q4:{ecrit:'Saisie libre (auto-correction)',qcm:'Réponses à choix',ask:'Donner les 4 définitions de ce muscle',ph:k=>`${k}…`,check:'Corriger',verify:'Vérifier',yours:'Ta réponse',official:'Réponse du cours',empty:'(rien écrit)',kw:(a,b)=>`${a} mot(s)-clé(s) retrouvé(s) sur ${b}`,rate:{ok:'Juste',mid:'Partiel',ko:'Faux'},rateAll:'Évaluer chaque ligne pour continuer.',pickAll:'Choisir une réponse sur chaque ligne.',score:(a)=>`${String(a).replace('.',',')} / 4`,sum:a=>`Score : ${String(a).replace('.',',')} / 4`},
    title:'Révision des muscles',eyebrow:n=>`Révision · ${n} muscles`,lead:'Origine, terminaison, innervation, action : s’entraîner à reconnaître chaque muscle, avec répétition espacée.',train:'S’entraîner',atlas:'Fiches des muscles',
    k1:'maîtrisés sur',k2:'à revoir aujourd’hui',k3:'jamais vus',k4:'jour(s) de suite',muscles:'Muscles',regions:'Régions précises',chosen:n=>`(${n} choisie${n>1?'s':''})`,all:'(toutes)',allRegions:'Toutes les régions',
    serie:'Série',src:{jour:'Révision du jour',tout:'Au hasard',erreurs:'Mes erreurs'},nombre:'Nombre',tous:'Tous',reponse:'Réponse',libre:'Saisie libre (nom français ou latin)',qcm:'4 propositions',
@@ -5839,7 +5849,8 @@ const Revision410=(()=>{
    prog:(i,n,s)=>`${i} / ${n} · ${s} pt${s>1?'s':''}`,goods:n=>`${n} bonne(s)`,over:'Séance terminée',qs:(n,m)=>`${n} question(s) · ${m} min`,redo:n=>`À retravailler (${n})`,perfect:'Aucune erreur : excellent.',again:'Nouvelle série',errs:'Réviser ces erreurs',back:'Retour',
    search:'Rechercher : muscle, nerf, os, action… (ex. nerf radial, tubercule majeur)',hide:'Masquer les noms (s’interroger)',count:n=>`${n} muscle(s)`,hidden:'Muscle masqué — toucher pour révéler',seen:(s,o)=>`vu ${s} fois, ${o} bonne(s)`,never:'jamais révisé',lang:'Langue',date:'fr-FR'},
   de:{F:{o:'Ursprung',t:'Ansatz',i:'Innervation',f:'Funktion'},G:{sup:'Obere Extremität',tronc:'Kopf, Hals und Rumpf',inf:'Untere Extremität'},
-   modes:{devine:['Muskel erraten','Die Hinweise kommen nacheinander: Ursprung, Ansatz, Innervation, Funktion. Weniger Hinweise = mehr Punkte.'],fiche:['Steckbrief ergänzen','Ein Muskel ist vorgegeben: Ursprung, Ansatz, Innervation oder Funktion aus 4 Antworten wählen.'],inverse:['Wer macht das?','Ein Ursprung, Ansatz, eine Innervation oder Funktion ist vorgegeben: Welcher Muskel passt?'],sprint:['Sprint 90 Sekunden','Kompletter Steckbrief, 4 Antworten: so viele richtige Antworten wie möglich in 90 Sekunden.']},
+   modes:{devine:['Muskel erraten','Die Hinweise kommen nacheinander: Ursprung, Ansatz, Innervation, Funktion. Weniger Hinweise = mehr Punkte.'],fiche:['Steckbrief ergänzen','Ein Muskel ist vorgegeben: Ursprung, Ansatz, Innervation oder Funktion aus 4 Antworten wählen.'],inverse:['Wer macht das?','Ein Ursprung, Ansatz, eine Innervation oder Funktion ist vorgegeben: Welcher Muskel passt?'],sprint:['Sprint 90 Sekunden','Kompletter Steckbrief, 4 Antworten: so viele richtige Antworten wie möglich in 90 Sekunden.'],quatre:['Muskel → 4 Angaben','Ein Muskel ist vorgegeben: Ursprung, Ansatz, Innervation und Funktion wiedergeben. Freie Eingabe mit Selbstkontrolle oder Auswahlantworten.']},
+   q4:{ecrit:'Freie Eingabe (Selbstkontrolle)',qcm:'Auswahlantworten',ask:'Gib die 4 Angaben zu diesem Muskel an',ph:k=>`${k}…`,check:'Auflösen',verify:'Prüfen',yours:'Deine Antwort',official:'Lösung laut Skript',empty:'(nichts eingegeben)',kw:(a,b)=>`${a} von ${b} Schlüsselwörtern gefunden`,rate:{ok:'Richtig',mid:'Teilweise',ko:'Falsch'},rateAll:'Jede Zeile bewerten, um fortzufahren.',pickAll:'In jeder Zeile eine Antwort wählen.',score:(a)=>`${String(a).replace('.',',')} / 4`,sum:a=>`Ergebnis: ${String(a).replace('.',',')} / 4`},
    title:'Muskeln wiederholen',eyebrow:n=>`Wiederholung · ${n} Muskeln`,lead:'Ursprung, Ansatz, Innervation, Funktion: jeden Muskel erkennen lernen, mit verteilter Wiederholung.',train:'Üben',atlas:'Muskel-Steckbriefe',
    k1:'sicher von',k2:'heute fällig',k3:'noch nie geübt',k4:'Tag(e) in Folge',muscles:'Muskeln',regions:'Regionen auswählen',chosen:n=>`(${n} gewählt)`,all:'(alle)',allRegions:'Alle Regionen',
    serie:'Serie',src:{jour:'Heute fällig',tout:'Zufällig',erreurs:'Meine Fehler'},nombre:'Anzahl',tous:'Alle',reponse:'Antwort',libre:'Freie Eingabe (lateinischer Name)',qcm:'4 Antworten',
@@ -5856,12 +5867,12 @@ const Revision410=(()=>{
  const SUB=m=>DE()?'':m.la;
  const SECN=x=>DE()?(REV_SECTIONS_DE[x]||x):x;
  const DAYS=[0,1,2,4,8,16,32],DAY=864e5;
- const MODES=['devine','fiche','inverse','sprint'];const MT=k=>L().modes[k][0];
+ const MODES=['devine','fiche','inverse','quatre','sprint'];const MT=k=>L().modes[k][0];
  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
  const today=()=>new Date().toISOString().slice(0,10);
  // ── Progression (enregistrée sur cet appareil) ──
- let P;function load(){if(P)return P;try{P=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){P=null}P=P&&typeof P==='object'?P:{};P.m=P.m||{};P.hist=P.hist||[];P.conf=P.conf||{};P.set=Object.assign({mode:'devine',len:10,groups:['sup','tronc','inf'],secs:[],answer:'libre',src:'jour',lang:'fr'},P.set||{});return P}
+ let P;function load(){if(P)return P;try{P=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){P=null}P=P&&typeof P==='object'?P:{};P.m=P.m||{};P.hist=P.hist||[];P.conf=P.conf||{};P.set=Object.assign({mode:'devine',len:10,groups:['sup','tronc','inf'],secs:[],answer:'libre',q4:'ecrit',src:'jour',lang:'fr'},P.set||{});return P}
  function save(){try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}}
  const card=id=>load().m[id]||(P.m[id]={b:0,n:0,s:0,ok:0,ko:0});
  function grade(id,good,strong){const c=card(id);c.s++;c.l=Date.now();if(good){c.ok++;c.b=strong?Math.min(6,c.b+1):Math.max(1,c.b)}else{c.ko++;c.b=0}c.n=Date.now()+DAYS[c.b]*DAY-36e5;
@@ -5897,6 +5908,7 @@ const Revision410=(()=>{
   if(S.i>=S.q.length||(S.mode==='sprint'&&Date.now()>=S.end))return finish();
   const m=BY[S.q[S.i]];const fields=shuffle(['o','t','i','f']);
   S.cur={m,step:1,done:false,ans:null,field:S.mode==='fiche'||S.mode==='inverse'?fields[0]:null,order:['o','t','i','f']};
+  if(S.mode==='quatre'){Object.assign(S.cur,{v:load().set.q4,phase:'input',txt:{o:'',t:'',i:'',f:''},rate:{},pick:{},o4:Object.fromEntries(['o','t','i','f'].map(k=>[k,options(m,k)]))});paint();setTimeout(()=>document.querySelector('[data-q4-txt]')?.focus(),30);return}
   S.cur.opts=S.mode==='devine'?(load().set.answer==='qcm'?options(m):null):S.mode==='sprint'?options(m):options(m,S.cur.field);
   paint();setTimeout(()=>document.querySelector('[data-rv-input]')?.focus(),30)}
  function tick(){if(!S||S.mode!=='sprint'){clearInterval(timer);return}const el=document.querySelector('[data-rv-clock]');const r=Math.max(0,Math.ceil((S.end-Date.now())/1000));if(el)el.textContent=r+' s';if(r<=0){clearInterval(timer);if(!location.hash.startsWith('#/revision'))return;finish()}}
@@ -5907,8 +5919,25 @@ const Revision410=(()=>{
   const pts=S.mode==='devine'?(good?5-c.step:0):good?1:0,max=S.mode==='devine'?4:1;S.score+=pts;S.max+=max;c.done=true;c.good=good;c.pts=pts;c.info=info;
   const strong=S.mode==='devine'?c.step<=2:true;grade(m.id,good,strong);S.res.push({id:m.id,good,pts,max,step:c.step,ans:c.ans,field:c.field});if(!good&&S.mode!=='sprint')S.retry.push(m.id);
   if(S.mode==='sprint'){paint();setTimeout(()=>{if(S&&S.cur===c)next()},good?350:1100);return}paint()}
+ // ── Mode « 4 définitions » ──
+ const STOP=new Set('de des du la le les et ou a au aux en sur sous par avec pour un une d l s partie chef der die das und oder von mit zur zum am an im in auf bei den dem des ein eine nach'.split(' '));
+ const toks=s=>String(s||'').toLowerCase().normalize('NFD').replace(/\p{M}/gu,'').replace(/ß/g,'ss').replace(/[–—]/g,'-').split(/[^a-z0-9-]+/).filter(w=>w&&(w.length>=3||/\d/.test(w))&&!STOP.has(w));
+ function marks(off,ans){const a=new Set(toks(ans));const stem=w=>w.slice(0,Math.max(4,Math.min(w.length,6)));const as=new Set([...a].map(stem));let hit=0;const words=new Set();
+  const html=esc(off).replace(/[A-Za-zÀ-ÿß0-9][A-Za-zÀ-ÿß0-9.–-]*/g,w=>{const t=toks(w)[0];if(!t)return w;if(!words.has(t)){words.add(t);if(a.has(t)||as.has(stem(t)))hit++}return a.has(t)||as.has(stem(t))?`<mark>${w}</mark>`:w});return{html,hit,n:words.size}}
+ function q4Check(){const c=S.cur;if(c.v==='qcm'){if(['o','t','i','f'].some(k=>!c.pick[k])){flash(L().q4.pickAll);return}['o','t','i','f'].forEach(k=>c.rate[k]=c.pick[k]===c.m.id?'ok':'ko');q4Done();return}
+  document.querySelectorAll('[data-q4-txt]').forEach(t=>c.txt[t.dataset.q4Txt]=t.value);c.phase='review';paint()}
+ function q4Done(){const c=S.cur;if(c.done)return;const sc=['o','t','i','f'].reduce((s,k)=>s+(c.rate[k]==='ok'?1:c.rate[k]==='mid'?.5:0),0);c.done=true;c.phase='done';c.pts=sc;c.good=sc>=3;S.score+=sc;S.max+=4;grade(c.m.id,sc>=3,sc===4);S.res.push({id:c.m.id,good:c.good,pts:sc,max:4,rate:{...c.rate}});if(!c.good)S.retry.push(c.m.id);paint()}
+ function q4HTML(){const T=L(),c=S.cur,m=c.m,F=T.F,ks=['o','t','i','f'];
+  let h=`<p class="rv-q">${T.q4.ask}</p><div class="rv-q4name"><b>${esc(NM(m))}</b>${SUB(m)?` <i>${esc(SUB(m))}</i>`:''}<span class="fn-small">${esc(SECN(m.sec))}</span></div>`;
+  if(c.v==='qcm'){h+=ks.map(k=>`<fieldset class="rv-q4row"><legend>${F[k]}</legend><div class="rv-opts4 q4">${c.o4[k].map((o,i)=>{const sel=c.pick[k]===o.id,cls=c.done?(o.id===m.id?' ok':sel?' ko':''):sel?' sel':'';return `<button class="rv-opt${cls}" data-rv="q4pick" data-k="${k}" data-v="${o.id}" aria-pressed="${sel}"${c.done?' disabled':''}><kbd>${i+1}</kbd><span>${esc(V(o,k))}</span></button>`}).join('')}</div></fieldset>`).join('');
+   if(!c.done)h+=`<div class="btns"><button class="btn primary" data-rv="q4check">${T.q4.verify}</button><button class="btn" data-rv="giveup">${T.give}</button></div><p class="fn-small" data-rv-flash aria-live="polite"></p>`}
+  else if(c.phase==='input'){h+=`<form data-q4-form class="rv-q4form">${ks.map(k=>`<label class="rv-q4in"><span class="rv-k">${F[k]}</span><textarea data-q4-txt="${k}" rows="2" placeholder="${esc(T.q4.ph(F[k]))}" autocapitalize="off" spellcheck="false">${esc(c.txt[k])}</textarea></label>`).join('')}<div class="btns"><button class="btn primary">${T.q4.check}</button><button type="button" class="btn" data-rv="giveup">${T.give}</button></div></form>`}
+  else{h+=ks.map(k=>{const mk=marks(V(m,k),c.txt[k]);const r=c.rate[k];return `<div class="rv-q4rev${r?' r-'+r:''}"><div class="rv-k">${F[k]}</div><div class="rv-q4cols"><div><small>${T.q4.yours}</small><p>${c.txt[k].trim()?esc(c.txt[k]):`<i>${T.q4.empty}</i>`}</p></div><div><small>${T.q4.official}</small><p>${mk.html}</p><span class="fn-small">${T.q4.kw(mk.hit,mk.n)}</span></div></div>${c.done?`<b class="rv-q4res">${T.q4.rate[r]}</b>`:`<div class="rv-q4rate" role="group">${['ok','mid','ko'].map(x=>`<button class="rv-rate ${x}${r===x?' on':''}" data-rv="q4rate" data-k="${k}" data-v="${x}" aria-pressed="${r===x}">${x==='ok'?'✅':x==='mid'?'🟡':'❌'} ${T.q4.rate[x]}</button>`).join('')}</div>`}</div>`}).join('');
+   if(!c.done)h+=`<p class="fn-small" data-rv-flash aria-live="polite">${ks.every(k=>c.rate[k])?'':T.q4.rateAll}</p>`}
+  if(c.done){h+=`<div class="rv-fb ${c.pts>=3?'ok':'ko'}" role="status"><b>${T.q4.sum(c.pts)}</b></div>${c.v==='qcm'?ficheHTML(m):''}<div class="btns"><button class="btn primary" data-rv="next" data-rv-next>${T.next}</button><button class="btn" data-rv="stop">${T.stop}</button></div>`}
+  return h}
  function hint(){const c=S?.cur;if(!c||c.done||S.mode!=='devine')return;if(c.step<4){c.step++;paint();document.querySelector('[data-rv-input]')?.focus()}else giveUp()}
- function giveUp(){const c=S.cur;if(c.done)return;c.done=true;c.good=false;c.pts=0;c.ans=null;S.max+=4;grade(c.m.id,false);S.res.push({id:c.m.id,good:false,pts:0,max:4,step:c.step});S.retry.push(c.m.id);paint()}
+ function giveUp(){const c=S.cur;if(c.done)return;if(S.mode==='quatre'){if(c.v==='ecrit'){document.querySelectorAll('[data-q4-txt]').forEach(t=>c.txt[t.dataset.q4Txt]=t.value)}['o','t','i','f'].forEach(k=>c.rate[k]='ko');c.phase='review';q4Done();return}c.done=true;c.good=false;c.pts=0;c.ans=null;S.max+=4;grade(c.m.id,false);S.res.push({id:c.m.id,good:false,pts:0,max:4,step:c.step});S.retry.push(c.m.id);paint()}
  function finish(){clearInterval(timer);const s=S;P.hist.unshift({d:new Date().toISOString(),mode:s.mode,score:s.score,max:s.max,n:s.res.length});P.hist=P.hist.slice(0,60);save();S={...s,over:true};paint()}
  let msg='';const flash=t=>{const el=document.querySelector('[data-rv-flash]');if(el)el.textContent=t};
  // ── Affichage ──
@@ -5925,6 +5954,7 @@ const Revision410=(()=>{
    <details class="rv-secs"${s.secs.length?' open':''}><summary>${T.regions} ${s.secs.length?T.chosen(s.secs.length):T.all}</summary><div class="rv-secgrid">${secRows}</div>${s.secs.length?`<button class="btn sm" data-rv="clearsecs">${T.allRegions}</button>`:''}</details>
    <div class="rv-row"><span class="rv-lab">${T.serie}</span>${['jour','tout','erreurs'].map(k=>`<label class="rv-chip"><input type="radio" name="rv-src" data-rv-src="${k}"${s.src===k?' checked':''}> ${T.src[k]}</label>`).join('')}</div>
    <div class="rv-row"><span class="rv-lab">${T.nombre}</span>${[[10,'10'],[20,'20'],[40,'40'],[0,T.tous]].map(([k,v])=>`<label class="rv-chip"><input type="radio" name="rv-len" data-rv-len="${k}"${+s.len===k?' checked':''}> ${v}</label>`).join('')}</div>
+   ${s.mode==='quatre'?`<div class="rv-row"><span class="rv-lab">${T.reponse}</span>${['ecrit','qcm'].map(k=>`<label class="rv-chip"><input type="radio" name="rv-q4" data-rv-q4="${k}"${s.q4===k?' checked':''}> ${T.q4[k]}</label>`).join('')}</div>`:''}
    ${s.mode==='devine'?`<div class="rv-row"><span class="rv-lab">${T.reponse}</span><label class="rv-chip"><input type="radio" name="rv-ans" data-rv-ans="libre"${s.answer==='libre'?' checked':''}> ${T.libre}</label><label class="rv-chip"><input type="radio" name="rv-ans" data-rv-ans="qcm"${s.answer==='qcm'?' checked':''}> ${T.qcm}</label></div>`:''}
    <button class="btn primary rv-go" data-rv="start">${esc(T.start(MT(s.mode),st.n))}</button></section>
   ${last?`<p class="fn-small">${esc(T.last(MT(last.mode)||last.mode,last.score,last.max,new Date(last.d).toLocaleDateString(T.date)))}</p>`:''}
@@ -5935,13 +5965,14 @@ const Revision410=(()=>{
  function optsHTML(c,labelOf){return `<div class="rv-opts4">${c.opts.map((o,i)=>{const cls=c.done?(o.id===c.m.id?' ok':o.id===c.ans?' ko':''):'';return `<button class="rv-opt${cls}" data-rv="opt" data-v="${o.id}"${c.done?' disabled':''}><kbd>${i+1}</kbd><span>${labelOf(o)}</span></button>`}).join('')}</div>`}
  function quizHTML(){const T=L(),c=S.cur,m=c.m,n=S.mode==='sprint'?`<span data-rv-clock>${Math.max(0,Math.ceil((S.end-Date.now())/1000))} s</span> · ${T.goods(S.score)}`:T.prog(Math.min(S.i+1,S.q.length),S.q.length,S.score);
   let body='';
-  if(S.mode==='devine'){body=`<p class="rv-q">${T.q}</p>${c.done?'':c.order.map((k,j)=>clue(m,k,j<c.step)).join('')}
+  if(S.mode==='quatre'){body=q4HTML()}
+  else if(S.mode==='devine'){body=`<p class="rv-q">${T.q}</p>${c.done?'':c.order.map((k,j)=>clue(m,k,j<c.step)).join('')}
    ${c.done?'':`<div class="rv-actions">${c.opts?'':`<form data-rv-form class="rv-form"><input data-rv-input list="rv-names" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${T.ph}" aria-label="${T.ph}"><button class="btn primary">${T.valider}</button></form><datalist id="rv-names">${M.map(x=>`<option value="${esc(NM(x))}">`).join('')}</datalist>`}
    ${c.opts?optsHTML(c,o=>esc(NM(o))):''}<div class="btns"><button class="btn" data-rv="hint"${c.step>=4?' disabled':''}>${T.hint(4-c.step)}</button><button class="btn" data-rv="giveup">${T.give}</button></div><p class="fn-small" data-rv-flash aria-live="polite"></p></div>`}`}
   else if(S.mode==='fiche'){body=`<p class="rv-q">${T.qf(esc(T.F[c.field]),esc(NM(m)),esc(m.la))}</p>${optsHTML(c,o=>esc(V(o,c.field)))}`}
   else if(S.mode==='inverse'){body=`<p class="rv-q">${T.qi(T.F[c.field])}</p><div class="rv-clue hl"><span class="rv-k">${T.F[c.field]}</span><span>${esc(V(m,c.field))}</span></div>${optsHTML(c,o=>esc(NM(o)))}`}
   else{body=`<p class="rv-q">${T.q}</p>${['o','t','i','f'].map(k=>clue(m,k,true)).join('')}${optsHTML(c,o=>esc(NM(o)))}`}
-  const fb=c.done&&S.mode!=='sprint'?`<div class="rv-fb ${c.good?'ok':'ko'}" role="status">${c.good?`<b>${T.good}</b>${S.mode==='devine'?T.pts(c.pts,c.step):''}${c.info?' · '+esc(c.info):''}`:`<b>${c.ans&&BY[c.ans]&&c.ans!==m.id?T.no+esc(S.mode==='fiche'?T.wrong:NM(BY[c.ans])):T.answer}</b>${T.was(esc(NM(m)))}`}</div>
+  const fb=S.mode==='quatre'?'':c.done&&S.mode!=='sprint'?`<div class="rv-fb ${c.good?'ok':'ko'}" role="status">${c.good?`<b>${T.good}</b>${S.mode==='devine'?T.pts(c.pts,c.step):''}${c.info?' · '+esc(c.info):''}`:`<b>${c.ans&&BY[c.ans]&&c.ans!==m.id?T.no+esc(S.mode==='fiche'?T.wrong:NM(BY[c.ans])):T.answer}</b>${T.was(esc(NM(m)))}`}</div>
    ${ficheHTML(m,c.field)}${!c.good&&c.ans&&BY[c.ans]&&c.ans!==m.id&&S.mode!=='fiche'?`<details class="rv-cmp"><summary>${T.cmp}${esc(NM(BY[c.ans]))}</summary>${ficheHTML(BY[c.ans])}</details>`:''}<div class="btns"><button class="btn primary" data-rv="next" data-rv-next>${T.next}</button><button class="btn" data-rv="stop">${T.stop}</button></div>`:c.done?`<div class="rv-fb ${c.good?'ok':'ko'}">${c.good?T.yes:T.no+esc(NM(m))}</div>`:'';
   return `<section class="rv-quiz"><div class="rv-top"><b>${esc(MT(S.mode))}</b><span>${n}</span><button class="btn sm" data-rv="stop">${T.finish}</button></div><div class="rv-prog"><i style="width:${S.mode==='sprint'?Math.max(0,(S.end-Date.now())/900):Math.round(S.i/S.q.length*100)}%"></i></div>${body}${fb}</section>`}
  function overHTML(){const T=L(),s=S,pc=s.max?Math.round(s.score/s.max*100):0,ko=[...new Set(s.res.filter(r=>!r.good).map(r=>r.id))];
@@ -5957,7 +5988,7 @@ const Revision410=(()=>{
  function page(sub){load();document.title=L().title+' · KinéTests';if(sub==='atlas')tab='atlas';else if(tab==='atlas'&&!sub)tab='quiz';
   return crumbs([[L().title]])+`<div class="fn-root rv-root" lang="${DE()?'de':'fr'}"><div data-rv-head>${headHTML()}</div><div data-rv-root>${inner()}</div></div>`}
  function paint(){const r=document.querySelector('[data-rv-root]');if(r){r.innerHTML=inner();const n=r.querySelector('[data-rv-next]');if(n)n.focus({preventScroll:true})}}
- function setLang(l){load();if(P.set.lang===l)return;P.set.lang=l;save();document.title=L().title+' · KinéTests';const h=document.querySelector('[data-rv-head]');if(h)h.innerHTML=headHTML();const root=document.querySelector('.rv-root');if(root)root.setAttribute('lang',l);const cr=document.querySelector('.crumbs li:last-child');if(cr)cr.textContent=L().title;paint();setTimeout(()=>document.querySelector('[data-rv-input]')?.focus(),30)}
+ function setLang(l){load();if(P.set.lang===l)return;if(S&&S.cur&&S.mode==='quatre')document.querySelectorAll('[data-q4-txt]').forEach(t=>S.cur.txt[t.dataset.q4Txt]=t.value);P.set.lang=l;save();document.title=L().title+' · KinéTests';const h=document.querySelector('[data-rv-head]');if(h)h.innerHTML=headHTML();const root=document.querySelector('.rv-root');if(root)root.setAttribute('lang',l);const cr=document.querySelector('.crumbs li:last-child');if(cr)cr.textContent=L().title;paint();setTimeout(()=>document.querySelector('[data-rv-input]')?.focus(),30)}
  // ── Événements ──
  document.addEventListener('click',e=>{const b=e.target.closest('[data-rv]');if(!b||!document.querySelector('[data-rv-root]'))return;const a=b.dataset.rv;load();
   if(a==='mode'){P.set.mode=b.dataset.v;save();msg='';paint()}
@@ -5966,19 +5997,22 @@ const Revision410=(()=>{
   if(a==='home'||a==='stop'){if(a==='stop'&&S&&!S.over&&S.res.length){finish();return}clearInterval(timer);S=null;paint()}
   if(a==='hint')hint();if(a==='giveup')giveUp();if(a==='next'&&S)next();
   if(a==='opt'&&S&&!S.cur.done)answer(b.dataset.v);
+  if(a==='q4pick'&&S&&!S.cur.done){S.cur.pick[b.dataset.k]=b.dataset.v;paint()}
+  if(a==='q4check'&&S)q4Check();
+  if(a==='q4rate'&&S&&!S.cur.done){S.cur.rate[b.dataset.k]=b.dataset.v;if(['o','t','i','f'].every(k=>S.cur.rate[k]))q4Done();else paint()}
   if(a==='clearsecs'){P.set.secs=[];save();paint()}
   if(a==='lang')setLang(b.dataset.v)});
- document.addEventListener('submit',e=>{if(!e.target.matches('[data-rv-form]'))return;e.preventDefault();const v=e.target.querySelector('[data-rv-input]').value;if(v.trim())answer(v)});
- document.addEventListener('change',e=>{const el=e.target;if(!el.closest?.('[data-rv-root]')||!el.matches('[data-rv-g],[data-rv-sec],[data-rv-src],[data-rv-len],[data-rv-ans],[data-rv-as],[data-rv-hide]'))return;load();
+ document.addEventListener('submit',e=>{if(e.target.matches('[data-q4-form]')){e.preventDefault();q4Check();return}if(!e.target.matches('[data-rv-form]'))return;e.preventDefault();const v=e.target.querySelector('[data-rv-input]').value;if(v.trim())answer(v)});
+ document.addEventListener('change',e=>{const el=e.target;if(!el.closest?.('[data-rv-root]')||!el.matches('[data-rv-g],[data-rv-sec],[data-rv-src],[data-rv-len],[data-rv-ans],[data-rv-q4],[data-rv-as],[data-rv-hide]'))return;load();
   if(el.dataset.rvG){P.set.groups=el.checked?[...new Set([...P.set.groups,el.dataset.rvG])]:P.set.groups.filter(x=>x!==el.dataset.rvG);if(!P.set.groups.length)P.set.groups=[el.dataset.rvG]}
   if(el.dataset.rvSec!==undefined){P.set.secs=el.checked?[...new Set([...P.set.secs,el.dataset.rvSec])]:P.set.secs.filter(x=>x!==el.dataset.rvSec)}
-  if(el.dataset.rvSrc)P.set.src=el.dataset.rvSrc;if(el.dataset.rvLen!==undefined)P.set.len=+el.dataset.rvLen;if(el.dataset.rvAns)P.set.answer=el.dataset.rvAns;
+  if(el.dataset.rvSrc)P.set.src=el.dataset.rvSrc;if(el.dataset.rvLen!==undefined)P.set.len=+el.dataset.rvLen;if(el.dataset.rvAns)P.set.answer=el.dataset.rvAns;if(el.dataset.rvQ4)P.set.q4=el.dataset.rvQ4;
   if(el.matches('[data-rv-as]'))atlasSec=el.value;if(el.matches('[data-rv-hide]'))atlasHide=el.checked;
   save();msg='';paint()});
  document.addEventListener('input',e=>{if(e.target.matches?.('[data-rv-aq]')){atlasQ=e.target.value;const pos=e.target.selectionStart;paint();const i=document.querySelector('[data-rv-aq]');if(i){i.focus();i.setSelectionRange(pos,pos)}}});
  document.addEventListener('keydown',e=>{if(!S||S.over||!location.hash.startsWith('#/revision')||tab==='atlas'||e.metaKey||e.ctrlKey||e.altKey)return;const inField=/INPUT|TEXTAREA|SELECT/.test(e.target.tagName);
   if(S.cur.done&&e.key==='Enter'&&!e.target.closest?.('summary')){e.preventDefault();next();return}
-  if(!S.cur.done&&e.key==='?'){e.preventDefault();hint();return}if(inField)return;if(!S.cur.done&&S.cur.opts&&/^[1-4]$/.test(e.key)){const o=S.cur.opts[+e.key-1];if(o)answer(o.id)}if(!S.cur.done&&(e.key==='h'||e.key==='H')){e.preventDefault();hint()}});
+  if(!S.cur.done&&e.key==='?'&&S.mode==='devine'){e.preventDefault();hint();return}if(inField)return;if(!S.cur.done&&S.cur.opts&&/^[1-4]$/.test(e.key)){const o=S.cur.opts[+e.key-1];if(o)answer(o.id)}if(!S.cur.done&&(e.key==='h'||e.key==='H')){e.preventDefault();hint()}});
  window.addEventListener('hashchange',()=>{if(!location.hash.startsWith('#/revision')){clearInterval(timer);if(S&&S.mode==='sprint'&&!S.over)S=null}});
  return{page,identify,M,setLang,_state:()=>S,_progress:()=>load()};
 })();
